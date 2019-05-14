@@ -9,7 +9,7 @@ Read the manifest (`package.json`) of any Atom package
 
 ## Installation
 
-`yarn add atom-read-manifest || npm install atom-read-manifest`
+`npm install atom-read-manifest -S`
 
 ## Usage
 
