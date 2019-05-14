@@ -18,10 +18,10 @@
     "package.json"
   ],
   "dependencies": {
-    "util": "^0.11.0",
+    "util": "^0.12.0"
   },
   "devDependencies": {
-    "eslint": "^5.5.0",
-    "husky": "^1.0.0"
+    "eslint": "^5.16.0",
+    "husky": "^2.2.0"
   }
 }
