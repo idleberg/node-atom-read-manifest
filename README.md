@@ -5,7 +5,7 @@
 [![CircleCI](https://flat.badgen.net/circleci/github/idleberg/node-atom-read-manifest)](https://circleci.com/gh/idleberg/node-atom-read-manifest)
 [![David](https://flat.badgen.net/david/dev/idleberg/node-atom-read-manifest)](https://david-dm.org/idleberg/node-atom-read-manifest?type=dev)
 
-Read the manifest (`package.json`) of any Atom package
+Read the manifest (`package.json`) of any installed Atom package
 
 ## Installation
 
