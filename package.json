@@ -1,0 +1,27 @@
+{
+  "name": "atom-read-manifest",
+  "version": "0.1.0",
+  "description": "Read the manifest (package.json) of any Atom package",
+  "license": "MIT",
+  "scripts": {
+    "precommit": "npm run test",
+    "test": "eslint index.js"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/idleberg/node-atom-read-manifest.git"
+  },
+  "keywords": [
+    "atom",
+    "atom package",
+    "package.json"
+  ],
+  "dependencies": {
+    "util": "^0.11.0",
+  },
+  "devDependencies": {
+    "eslint": "^5.5.0",
+    "husky": "^1.0.0"
+  }
+}
