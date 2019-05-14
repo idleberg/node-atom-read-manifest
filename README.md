@@ -32,6 +32,10 @@ const manifest = readManifest.sync(packageID);
 console.log(manifest);
 ```
 
+## Related
+
+- [vscode-read-manifest](https://www.npmjs.com/package/vscode-read-manifest)
+
 ## License
 
 This work is licensed under [The MIT License](https://opensource.org/licenses/MIT)
