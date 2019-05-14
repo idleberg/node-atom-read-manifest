@@ -3,7 +3,7 @@
 [![npm](https://flat.badgen.net/npm/license/atom-read-manifest)](https://www.npmjs.org/package/atom-read-manifest)
 [![npm](https://flat.badgen.net/npm/v/atom-read-manifest)](https://www.npmjs.org/package/atom-read-manifest)
 [![CircleCI](https://flat.badgen.net/circleci/github/idleberg/node-atom-read-manifest)](https://circleci.com/gh/idleberg/node-atom-read-manifest)
-[![David](https://flat.badgen.net/david/dev/idleberg/node-atom-read-manifest)](https://david-dm.org/idleberg/node-atom-read-manifest?type=dev)
+[![David](https://flat.badgen.net/david/dep/idleberg/node-atom-read-manifest)](https://david-dm.org/idleberg/node-atom-read-manifest)
 
 Read the manifest (`package.json`) of any installed Atom package
 
