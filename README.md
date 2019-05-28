@@ -13,7 +13,9 @@ Read the manifest (`package.json`) of any installed Atom package
 
 ## Usage
 
-Example usage in script:
+`readManifest(packageID?: string)`
+
+**Example**:
 
 ```js
 const readManifest = require('atom-read-manifest');
