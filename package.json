@@ -17,7 +17,9 @@
   "keywords": [
     "atom",
     "atom package",
-    "package.json"
+    "manifest",
+    "package.json",
+    "package manifest"
   ],
   "dependencies": {
     "find-up": "^4.0.0",
