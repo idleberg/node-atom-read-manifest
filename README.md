@@ -13,34 +13,23 @@ Read the manifest (`package.json`) of any installed Atom package
 
 ## Usage
 
-`readManifest(packageID?: string)`
+`readManifest(packageID?: string)` / `readManifestSync(packageID?: string)`
 
 **Example**:
 
 ```js
-const { readManifest } = require('atom-read-manifest');
+const { readManifest, readManifestSync } = require('atom-read-manifest');
 
 // Unique package identifier
 const packageID = 'teletype';
 
-// Asynchronous usage
+// Asynchronous
 (async () => {
     const manifest = await readManifest(packageID);
     console.log(manifest);
 })();
-```
 
-`readManifestSync(packageID?: string)`
-
-**Example**:
-
-```js
-const { readManifestSync } = require('atom-read-manifest');
-
-// Unique package identifier
-const packageID = 'teletype';
-
-// Synchronous usage
+// Synchronous
 const manifest = readManifestSync(packageID);
 console.log(manifest);
 ```
