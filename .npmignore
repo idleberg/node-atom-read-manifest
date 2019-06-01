@@ -12,7 +12,6 @@ gulpfile.js
 tsconfig.json
 tslint.json
 
-
 # Project-specific
 test.js
 test.ts
