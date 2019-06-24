@@ -7,17 +7,12 @@ const { join, resolve } = require('path');
 
 const readFileAsync = promisify(readFile);
 
-const readManifest = async (packageName: string = ''): Promise<Object> => {
+const readManifest = async (packageName: string): Promise<Object> => {
   let filePath: string|undefined;
 
-  if (packageName) {
-    // @ts-ignore
-    const packagePath: string = atom.packages.resolvePackagePath(packageName);
-    filePath = resolve(packagePath, 'package.json');
-  } else {
-    const selfRoot = await findUp('package.json', { cwd: __dirname });
-    filePath = await findUp('package.json', { cwd: join(selfRoot, '../..') });
-  }
+  // @ts-ignore
+  const packagePath: string = atom.packages.resolvePackagePath(packageName);
+  filePath = resolve(packagePath, 'package.json');
 
   try {
     const fileContents = await readFileAsync(filePath, 'utf8');
@@ -27,17 +22,12 @@ const readManifest = async (packageName: string = ''): Promise<Object> => {
   }
 };
 
-const readManifestSync = (packageName: string = ''): Object => {
+const readManifestSync = (packageName: string): Object => {
   let filePath: string|undefined;
 
-  if (packageName) {
-    // @ts-ignore
-    const packagePath: string = atom.packages.resolvePackagePath(packageName);
-    filePath = resolve(packagePath, 'package.json');
-  } else {
-    const selfRoot = findUp.sync('package.json', { cwd: __dirname });
-    filePath = findUp.sync('package.json', { cwd: join(selfRoot, '../..') });
-  }
+  // @ts-ignore
+  const packagePath: string = atom.packages.resolvePackagePath(packageName);
+  filePath = resolve(packagePath, 'package.json');
 
   try {
     const fileContents = readFileSync(filePath, 'utf8');

@@ -13,7 +13,7 @@ Read the manifest (`package.json`) of any installed Atom package
 
 ## Usage
 
-`readManifest(packageID?: string)` / `readManifestSync(packageID?: string)`
+`readManifest(packageID: string)` / `readManifestSync(packageID: string)`
 
 **Example**:
 
