@@ -26,10 +26,11 @@
     "util": "^0.12.1"
   },
   "devDependencies": {
-    "@types/node": "^13.1.1",
-    "husky": "^3.1.0",
-    "tslint": "^5.20.1",
-    "typescript": "^3.7.4"
+    "@types/atom": "^1.36.1",
+    "@types/node": "^13.5.3",
+    "husky": "^4.2.1",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5"
   },
   "husky": {
     "hooks": {
