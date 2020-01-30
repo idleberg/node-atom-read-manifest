@@ -1,6 +1,6 @@
 {
   "name": "atom-read-manifest",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Read the manifest (package.json) of any installed Atom package",
   "license": "MIT",
   "scripts": {
