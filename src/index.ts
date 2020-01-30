@@ -8,9 +8,8 @@ const { join, resolve } = require('path');
 const readFileAsync = promisify(readFile);
 
 const readManifest = async (packageName: string): Promise<Object> => {
-  let filePath: string|undefined;
+  let filePath: string | undefined;
 
-  // @ts-ignore
   const packagePath: string = atom.packages.resolvePackagePath(packageName);
   filePath = resolve(packagePath, 'package.json');
 
@@ -23,9 +22,8 @@ const readManifest = async (packageName: string): Promise<Object> => {
 };
 
 const readManifestSync = (packageName: string): Object => {
-  let filePath: string|undefined;
+  let filePath: string | undefined;
 
-  // @ts-ignore
   const packagePath: string = atom.packages.resolvePackagePath(packageName);
   filePath = resolve(packagePath, 'package.json');
 
