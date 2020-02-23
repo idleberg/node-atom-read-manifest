@@ -9,7 +9,7 @@ const findUp = require('find-up');
 const readFileAsync = promisify(readFile);
 
 async function readManifest(packageName: string = ''): Promise<Object> {
-  const filePath = resolveFilePath(packageName);
+  const filePath: string = resolveFilePath(packageName);
 
   try {
     const fileContents: string = await readFileAsync(filePath, 'utf8');
@@ -20,7 +20,7 @@ async function readManifest(packageName: string = ''): Promise<Object> {
 }
 
 function readManifestSync (packageName: string = ''): Object {
-  const filePath = resolveFilePath(packageName);
+  const filePath: string = resolveFilePath(packageName);
 
   try {
     const fileContents: string = readFileSync(filePath, 'utf8');
