@@ -1,17 +1,15 @@
 'use strict';
 
-const findUp = require('find-up');
+const { join, relative, resolve } = require('path');
 const { promisify } = require('util');
 const { readFile, readFileSync } = require('fs');
-const { join, resolve } = require('path');
+const callerCallsite = require('caller-callsite');
+const findUp = require('find-up');
 
 const readFileAsync = promisify(readFile);
 
-const readManifest = async (packageName: string): Promise<Object> => {
-  let filePath: string | undefined;
-
-  const packagePath: string = atom.packages.resolvePackagePath(packageName);
-  filePath = resolve(packagePath, 'package.json');
+async function readManifest(packageName: string = ''): Promise<Object> {
+  const filePath = resolveFilePath(packageName);
 
   try {
     const fileContents = await readFileAsync(filePath, 'utf8');
@@ -19,13 +17,10 @@ const readManifest = async (packageName: string): Promise<Object> => {
   } catch (err) {
     return null;
   }
-};
+}
 
-const readManifestSync = (packageName: string): Object => {
-  let filePath: string | undefined;
-
-  const packagePath: string = atom.packages.resolvePackagePath(packageName);
-  filePath = resolve(packagePath, 'package.json');
+function readManifestSync (packageName: string = ''): Object {
+  const filePath = resolveFilePath(packageName);
 
   try {
     const fileContents = readFileSync(filePath, 'utf8');
@@ -33,7 +28,32 @@ const readManifestSync = (packageName: string): Object => {
   } catch (err) {
     return null;
   }
-};
+}
+
+function resolveFilePath(packageName: string) {
+  packageName = packageName?.length ? packageName : getPackageName();
+
+  const packagePath: string = atom.packages.resolvePackagePath(packageName);
+  const filePath: string | undefined = resolve(packagePath, 'package.json');
+
+  return filePath;
+}
+
+function getPackageName(): string {
+  const callerPath: string = callerCallsite().getFileName();
+  const packageDirPaths: string[] = atom.packages.getPackageDirPaths();
+
+  const intersection = packageDirPaths.filter(packageDirPath => {
+    return callerPath.startsWith(packageDirPath);
+  });
+
+  if (intersection?.length) {
+    return callerPath
+      .replace(intersection[0], '')
+      .split('/')
+      .filter(fragment => fragment)[0] || '';
+  }
+}
 
 export {
   readManifest,

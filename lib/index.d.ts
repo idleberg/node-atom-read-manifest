@@ -1,3 +1,3 @@
-declare const readManifest: (packageName: string) => Promise<Object>;
-declare const readManifestSync: (packageName: string) => Object;
+declare function readManifest(packageName?: string): Promise<Object>;
+declare function readManifestSync(packageName?: string): Object;
 export { readManifest, readManifestSync };
