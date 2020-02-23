@@ -12,7 +12,7 @@ async function readManifest(packageName: string = ''): Promise<Object> {
   const filePath = resolveFilePath(packageName);
 
   try {
-    const fileContents = await readFileAsync(filePath, 'utf8');
+    const fileContents: string = await readFileAsync(filePath, 'utf8');
     return JSON.parse(fileContents);
   } catch (err) {
     return null;
@@ -23,7 +23,7 @@ function readManifestSync (packageName: string = ''): Object {
   const filePath = resolveFilePath(packageName);
 
   try {
-    const fileContents = readFileSync(filePath, 'utf8');
+    const fileContents: string = readFileSync(filePath, 'utf8');
     return JSON.parse(fileContents);
   } catch (err) {
     return null;
@@ -43,7 +43,7 @@ function getPackageName(): string {
   const callerPath: string = callerCallsite().getFileName();
   const packageDirPaths: string[] = atom.packages.getPackageDirPaths();
 
-  const intersection = packageDirPaths.filter(packageDirPath => {
+  const intersection: string[] = packageDirPaths.filter(packageDirPath => {
     return callerPath.startsWith(packageDirPath);
   });
 
