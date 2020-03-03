@@ -4,7 +4,7 @@
   "description": "Read the manifest (package.json) of any installed Atom package",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --pretty --project ./",
+    "build": "rimraf ./tsconfig.tsbuildinfo && tsc --pretty --project ./",
     "dev": "tsc --watch --pretty --project ./",
     "lint:fix": "tslint --fix --project ./",
     "lint": "tslint --project ./",
@@ -31,6 +31,7 @@
     "@types/atom": "^1.36.2",
     "@types/node": "^13.7.4",
     "husky": "^4.2.3",
+    "rimraf": "^3.0.2",
     "tslint": "^6.0.0",
     "typescript": "^3.8.2"
   },
