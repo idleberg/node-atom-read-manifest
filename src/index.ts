@@ -1,6 +1,6 @@
 'use strict';
 
-const { join, relative, resolve } = require('path');
+const { join, relative, resolve, sep } = require('path');
 const { promisify } = require('util');
 const { readFile, readFileSync } = require('fs');
 const callerCallsite = require('caller-callsite');
@@ -50,7 +50,7 @@ function getPackageName(): string {
   if (intersection?.length) {
     return callerPath
       .replace(intersection[0], '')
-      .split('/')
+      .split(sep)
       .filter(fragment => fragment)[0] || '';
   }
 }
