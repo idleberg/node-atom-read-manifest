@@ -1,10 +1,9 @@
 'use strict';
 
-const { join, relative, resolve, sep } = require('path');
+const { resolve, sep } = require('path');
 const { promisify } = require('util');
 const { readFile, readFileSync } = require('fs');
 const callerCallsite = require('caller-callsite');
-const findUp = require('find-up');
 
 const readFileAsync = promisify(readFile);
 
