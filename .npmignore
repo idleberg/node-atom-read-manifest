@@ -12,6 +12,7 @@ gulpfile.js
 tsconfig.json
 tsconfig.tsbuildinfo
 tslint.json
+yarn.lock
 
 # Project-specific
 test.js
