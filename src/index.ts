@@ -1,17 +1,14 @@
 'use strict';
 
 const { resolve, sep } = require('path');
-const { promisify } = require('util');
-const { readFile, readFileSync } = require('fs');
+const fs = require('fs');
 const callerCallsite = require('caller-callsite');
-
-const readFileAsync = promisify(readFile);
 
 async function readManifest(packageName: string = ''): Promise<Object> {
   const filePath: string = resolveFilePath(packageName);
 
   try {
-    const fileContents: string = await readFileAsync(filePath, 'utf8');
+    const fileContents: string = await fs.promise.readFile(filePath, 'utf8');
     return JSON.parse(fileContents);
   } catch (err) {
     return null;
@@ -22,7 +19,7 @@ function readManifestSync (packageName: string = ''): Object {
   const filePath: string = resolveFilePath(packageName);
 
   try {
-    const fileContents: string = readFileSync(filePath, 'utf8');
+    const fileContents: string = fs.readFileSync(filePath, 'utf8');
     return JSON.parse(fileContents);
   } catch (err) {
     return null;
