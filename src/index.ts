@@ -1,14 +1,14 @@
 'use strict';
 
 const { resolve, sep } = require('path');
-const fs = require('fs');
+const { promises: fs, readFileSync } = require('fs');
 const callerCallsite = require('caller-callsite');
 
 async function readManifest(packageName: string = ''): Promise<Object> {
   const filePath: string = resolveFilePath(packageName);
 
   try {
-    const fileContents: string = await fs.promise.readFile(filePath, 'utf8');
+    const fileContents: string = await fs.readFile(filePath, 'utf8');
     return JSON.parse(fileContents);
   } catch (err) {
     return null;
@@ -19,7 +19,7 @@ function readManifestSync (packageName: string = ''): Object {
   const filePath: string = resolveFilePath(packageName);
 
   try {
-    const fileContents: string = fs.readFileSync(filePath, 'utf8');
+    const fileContents: string = readFileSync(filePath, 'utf8');
     return JSON.parse(fileContents);
   } catch (err) {
     return null;
@@ -49,6 +49,8 @@ function getPackageName(): string {
       .split(sep)
       .filter(fragment => fragment)[0] || '';
   }
+
+  return '';
 }
 
 export {
