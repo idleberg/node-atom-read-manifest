@@ -27,7 +27,9 @@ function readManifestSync (packageName: string = ''): Object {
 }
 
 function resolveFilePath(packageName: string) {
-  packageName = packageName?.length ? packageName : getPackageName();
+  packageName = packageName?.length
+    ? packageName
+    : getPackageName() || 'unknown';
 
   const packagePath: string = atom.packages.resolvePackagePath(packageName);
   const filePath: string | undefined = resolve(packagePath, 'package.json');
