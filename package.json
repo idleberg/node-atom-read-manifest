@@ -13,7 +13,8 @@
     "lint:ts": "eslint ./src --ignore-path .gitignore",
     "lint": "npm-run-all --parallel lint:*",
     "prepublishOnly": "npm run lint && npm run build",
-    "start": "rollup --config --watch"
+    "start": "rollup --config --watch",
+    "test": "npm run lint"
   },
   "main": "lib/index.js",
   "repository": {
