@@ -1,11 +1,10 @@
-'use strict';
-
-const { resolve, sep } = require('path');
-const { promises: fs, readFileSync } = require('fs');
-const callerCallsite = require('caller-callsite');
+import { promises as fs, readFileSync } from 'fs';
+import { resolve, sep } from 'path';
+import callerCallsite = require('caller-callsite');
+import readPkgUp = require('read-pkg-up');
 
 async function readManifest(packageName: string = ''): Promise<Object> {
-  const filePath: string = resolveFilePath(packageName);
+  const filePath: string = await resolvePackagePath(packageName);
 
   try {
     const fileContents: string = await fs.readFile(filePath, 'utf8');
@@ -16,7 +15,7 @@ async function readManifest(packageName: string = ''): Promise<Object> {
 }
 
 function readManifestSync (packageName: string = ''): Object {
-  const filePath: string = resolveFilePath(packageName);
+  const filePath: string = resolvePackagePathSync(packageName);
 
   try {
     const fileContents: string = readFileSync(filePath, 'utf8');
@@ -26,15 +25,36 @@ function readManifestSync (packageName: string = ''): Object {
   }
 }
 
-function resolveFilePath(packageName: string) {
+async function resolvePackagePath(packageName: string): Promise<string> {
   packageName = packageName?.length
     ? packageName
-    : getPackageName() || 'unknown';
+    : getPackageName();
 
-  const packagePath: string = atom.packages.resolvePackagePath(packageName);
-  const filePath: string | undefined = resolve(packagePath, 'package.json');
+  const packagePath: string | null = atom.packages.resolvePackagePath(packageName);
 
-  return filePath;
+  if (packagePath) {
+    return resolve(packagePath, 'package.json');
+  }
+
+  const { packageJson } = await readPkgUp({cwd: __dirname});
+
+  return await resolvePackagePath(packageJson.name);
+}
+
+function resolvePackagePathSync(packageName: string): string {
+  packageName = packageName?.length
+    ? packageName
+    : getPackageName();
+
+  const packagePath: string | null = atom.packages.resolvePackagePath(packageName);
+
+  if (packagePath) {
+    return resolve(packagePath, 'package.json');
+  }
+
+  const { packageJson } = readPkgUp.sync({cwd: __dirname});
+
+  return resolvePackagePathSync(packageJson.name);
 }
 
 function getPackageName(): string {
@@ -49,7 +69,7 @@ function getPackageName(): string {
     return callerPath
       .replace(intersection[0], '')
       .split(sep)
-      .filter(fragment => fragment)[0] || '';
+      .filter(fragment => fragment)[0];
   }
 
   return '';
