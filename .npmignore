@@ -6,7 +6,9 @@ test/
 types/
 
 # Files
+.eslintcache
 .gitignore
+.rollup.cache
 .travis.yml
 gulpfile.js
 tsconfig.json
